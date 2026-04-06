@@ -1,21 +1,78 @@
-import { Button } from "@/components/ui/button"
+import "./index.css";
+// import Navbar from "./components/shared/Navbar";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-export function App() {
-  return (
-    <div className="flex min-h-svh p-6">
-      <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-        <div>
-          <h1 className="font-medium">Project ready!</h1>
-          <p>You may now add components and start building.</p>
-          <p>We&apos;ve already added the button component for you.</p>
-          <Button className="mt-2">Button</Button>
-        </div>
-        <div className="font-mono text-xs text-muted-foreground">
-          (Press <kbd>d</kbd> to toggle dark mode)
-        </div>
-      </div>
-    </div>
-  )
+import Home from "./components/Home";
+import Login from "./components/auth/Login";
+import Signup from "./components/auth/SignUp";
+import Jobs from "./components/Jobs";
+import Browse from "./components/Browse";
+import Profile from "./components/Profile";
+import JobDescription from "./components/JobDescription";
+import Companies from "./components/admin/Companies";
+import CompanyCreate from "./components/admin/CompanyCreate";
+import CompanySetup from "./components/admin/CompanySetup";
+import AdminJobs from "./components/admin/AdminJobs";
+import PostJob from "./components/admin/PostJob";
+import Applicants from "./components/admin/Applicants";
+
+const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/signup",
+    element: <Signup />,
+  },
+  {
+    path: "/jobs",
+    element: <Jobs />,
+  },
+  {
+    path: "/browse",
+    element: <Browse />,
+  },
+  {
+    path: "/profile",
+    element: <Profile />,
+  },
+  {
+    path: "/description/:id",
+    element: <JobDescription />,
+  },
+  // this for a admin routes
+  {
+    path:"/admin/companies",
+    element:<Companies/>
+  },
+  {
+    path:"/admin/companies/create",
+    element:<CompanyCreate/>
+  },
+  {
+    path:"/admin/companies/:id",
+    element:<CompanySetup/>
+  },
+  {
+    path:"/admin/jobs",
+    element:<AdminJobs/>
+  },
+  {
+    path:"/admin/jobs/create",
+    element:<PostJob/>
+  },
+
+  {
+    path:"/admin/jobs/:id/applicants",
+    element:<Applicants/>
+  },
+]);
+
+export default function App() {
+  return <RouterProvider router={appRouter} />;
 }
-
-export default App
